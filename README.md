@@ -22,5 +22,14 @@ Reffer this doc:- https://www.mavenwave.com/blog/trends_cloud_migration_financia
 
 
 ## Steps to Migrate S3 to GCS using terraform 
+### Step1 create a Virtual machine 
+- Go to Navigation menu --> Compute Engine Section --> Create virtual instance 
+<img width="1365" alt="image" src="https://user-images.githubusercontent.com/63963025/192267305-e2e80042-f369-473a-9d40-583edce87403.png">
+ 
+- Name your machine and select Region <b>us-central1</b> Zone <b>us-central1-a</b>
+<img width="523" alt="image" src="https://user-images.githubusercontent.com/63963025/192268068-0dd36218-f3b8-4468-9104-38b610eb26b8.png">
 
-### Step1 create a Virtual machine go to Navigation menu --> Compute Engine Section --> Create  
+- Select MAchine Configuration --> Series <b>E2</b> Machine type <b>e2-medium</b> 
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/63963025/192268784-f5e28e84-6d4e-4c92-a1a6-b25a330a6eb8.png">
+
+- Boot disk Select image 
