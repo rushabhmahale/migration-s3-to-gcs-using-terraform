@@ -94,4 +94,68 @@ resource "google_storage_bucket" "s3-backup-bucket" {
   depends_on = [google_storage_bucket.s3-backup-bucket]
 } 
 ```
-- 
+- This will create Storage transfer job in GCP 
+```
+resource "google_storage_transfer_job" "s3-bucket-nightly-backup" {
+  description = "Nightly backup of S3 bucket"
+  project     = "<PROJECT_ID>"
+}
+  transfer_spec {
+    object_conditions {
+      max_time_elapsed_since_last_modification = "600s"
+      exclude_prefixes = [
+        "requests.gz",
+      ]
+    }
+```
+- This will ask AWS Bucket name and for authentication and security reasons we have to provide access key and secret key <b> never ever share your access-key and secret-key to anyone</b>
+```
+ transfer_options {
+      delete_objects_unique_in_sink = false
+    }
+    aws_s3_data_source {
+      bucket_name = "<AWS_BUCKETNAME>"
+      aws_access_key {
+        access_key_id     = "<ACCESS_KEY>"
+        secret_access_key = "<SECRET_KEY>"
+      }
+    }
+```
+- Set the path of your bucket in GCP side 
+```
+gcs_data_sink {
+      bucket_name = google_storage_bucket.s3-backup-bucket.name
+      path        = "foo/bar/"
+    }
+  }
+```
+- Schedule your Job 
+```
+schedule {
+      schedule_start_date {
+      year  = 2022
+      month = 09
+      day   = 06
+    }
+      schedule_end_date {
+      year  = 2022
+      month = 09
+      day   = 07
+    }
+    start_time_of_day {
+      hours   = 12
+      minutes = 35
+      seconds = 0
+      nanos   = 0
+    }
+   # repeat_interval = "604800s"
+  } 
+
+  depends_on = [google_storage_bucket_iam_member.s3-backup-bucket]
+```
+- Terraform code 
+<img width="831" alt="image" src="https://user-images.githubusercontent.com/63963025/193505607-b17c0da2-7e65-40e6-8af9-7f05c4cd2174.png">
+<img width="839" alt="image" src="https://user-images.githubusercontent.com/63963025/193505636-64dc20e7-a6f5-4dd2-9324-a21919adc3d0.png">
+<img width="807" alt="image" src="https://user-images.githubusercontent.com/63963025/193505655-49d658fe-60da-43d5-857e-f6169bbf2f23.png">
+
+### Step 4 run the terraform code 
