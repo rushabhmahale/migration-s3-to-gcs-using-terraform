@@ -169,3 +169,12 @@ schedule {
 ```
 terraform init 
 ```
+<img width="776" alt="image" src="https://user-images.githubusercontent.com/63963025/193732182-74fb4ccb-81dc-4327-b9b6-0d5149f9c016.png">
+
+- Plan whole infrastructure and verify what resources you have to implement 
+```
+terraform plan 
+```
+<img width="862" alt="image" src="https://user-images.githubusercontent.com/63963025/193732717-06f1345d-dc28-4823-85e9-2e308ef18d8d.png">
+
+
