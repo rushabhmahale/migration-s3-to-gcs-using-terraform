@@ -158,4 +158,14 @@ schedule {
 <img width="839" alt="image" src="https://user-images.githubusercontent.com/63963025/193505636-64dc20e7-a6f5-4dd2-9324-a21919adc3d0.png">
 <img width="807" alt="image" src="https://user-images.githubusercontent.com/63963025/193505655-49d658fe-60da-43d5-857e-f6169bbf2f23.png">
 
-### Step 4 run the terraform code 
+### Step4 Create a s3 bucket in AWS 
+
+- Create s3 bucket add content file 
+<img width="1286" alt="image" src="https://user-images.githubusercontent.com/63963025/193512301-8b1e3f55-c7c7-4da8-873d-2f4fe972207b.png">
+
+### Step5 run terraform code 
+
+-  Lets install provider plugins in terraform 
+```
+terraform init 
+```
